@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Beans to add to the current Application context definition -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd
+           http://www.springframework.org/schema/jee
+           http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+           http://www.springframework.org/schema/util
+           http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+    <!-- START ModuleActivatorStep -->
+    <bean id="cfl-CreateGlobalParametersActivatorStep"
+          class="org.openmrs.module.cfldistribution.api.activator.impl.CreateGlobalParametersActivatorStep"/>
+    <bean id="cfl-FixRiskFactorForHIVConceptsActivatorStep"
+          class="org.openmrs.module.cfldistribution.api.activator.impl.FixRiskFactorForHIVConceptsActivatorStep"/>
+    <bean id="cfl-InstallMetadataPackagesActivatorStep"
+          class="org.openmrs.module.cfldistribution.api.activator.impl.InstallMetadataPackagesActivatorStep"/>
+    <bean id="cfl-ConfigurePatientDashboardAppsActivatorStep"
+          class="org.openmrs.module.cfldistribution.api.activator.impl.ConfigurePatientDashboardAppsActivatorStep"/>
+    <bean id="cfl-InstallMetadataBundleActivatorStep"
+          class="org.openmrs.module.cfldistribution.api.activator.impl.InstallMetadataBundleActivatorStep"/>
+    <bean id="cfl-DataCleanupActivatorStep"
+          class="org.openmrs.module.cfldistribution.api.activator.impl.DataCleanupActivatorStep"/>
+    <!-- END ModuleActivatorStep -->
+
+    <bean id="cflRolePrivilegeProfiles"
+          class="org.openmrs.module.cfldistribution.api.metadata.RolePrivilegeProfilesMetadata"/>
+    <bean id="cflDisableBuildInApps" class="org.openmrs.module.cfldistribution.api.metadata.DisableBuildInAppsMetadata">
+        <property name="appFrameworkService" ref="appFrameworkService"/>
+    </bean>
+    <bean id="cflHtmlFormsMetadata" class="org.openmrs.module.cfldistribution.api.metadata.HtmlFormsMetadata"/>
+    <bean id="cflVisitTypesMetadata" class="org.openmrs.module.cfldistribution.api.metadata.VisitTypesMetadata"/>
+    <bean id="cflEncounterTypesMetadata" class="org.openmrs.module.cfldistribution.api.metadata.EncounterTypesMetadata"/>
+    <bean id="cflUpdateGlobalParametersActivatorStep"
+          class="org.openmrs.module.cfldistribution.api.metadata.UpdateGlobalParametersMetadata"/>
+    <bean id="cflProgramsMetadata" class="org.openmrs.module.cfldistribution.api.metadata.ProgramsMetadata"/>
+    <bean id="cflPatientFlagsMetadata" class="org.openmrs.module.cfldistribution.api.metadata.PatientFlagsMetadata">
+        <property name="flagService" ref="flagService"/>
+    </bean>
+    <bean id="cflPersonAttributesMetadata" class="org.openmrs.module.cfldistribution.api.metadata.PersonAttributesMetadata">
+        <property name="personService" ref="personService"/>
+    </bean>
+    <!-- Message Services Metadata -->
+    <bean id="cflAdherenceReportDailyMetaData"
+          class="org.openmrs.module.cfldistribution.api.metadata.services.AdherenceReportDailyMetadata">
+        <property name="dbSessionFactory">
+            <ref bean="dbSessionFactory"/>
+        </property>
+    </bean>
+    <bean id="cflVisitReminderMetadata"
+          class="org.openmrs.module.cfldistribution.api.metadata.services.VisitReminderMetadata">
+        <property name="dbSessionFactory">
+            <ref bean="dbSessionFactory"/>
+        </property>
+    </bean>
+    <bean id="cflAdherenceReportWeeklyMetadata"
+          class="org.openmrs.module.cfldistribution.api.metadata.services.AdherenceReportWeeklyMetadata">
+        <property name="dbSessionFactory">
+            <ref bean="dbSessionFactory"/>
+        </property>
+    </bean>
+    <bean id="cflHealthTipMetadata"
+          class="org.openmrs.module.cfldistribution.api.metadata.services.HealthTipMetadata">
+        <property name="dbSessionFactory">
+            <ref bean="dbSessionFactory"/>
+        </property>
+    </bean>
+    <bean id="cflAdherenceFeedbackMetadata"
+          class="org.openmrs.module.cfldistribution.api.metadata.services.AdherenceFeedbackMetadata">
+        <property name="dbSessionFactory">
+            <ref bean="dbSessionFactory"/>
+        </property>
+    </bean>
+    <bean id="cflDbViewsMetadata"
+          class="org.openmrs.module.cfldistribution.api.metadata.views.DbViewsMetadata">
+        <property name="dbSessionFactory">
+            <ref bean="dbSessionFactory"/>
+        </property>
+    </bean>
+</beans>
